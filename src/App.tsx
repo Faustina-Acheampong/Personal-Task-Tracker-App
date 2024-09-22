@@ -11,7 +11,8 @@ const App: React.FC = () => {
     const newTask: Task = {
       id: Date.now(), // Unique ID based on timestamp
       text: taskText,
-      isCompleted: false
+      isCompleted: false,
+      isEditing: false,
     };
     setTasks([...tasks, newTask]);
   };
@@ -26,11 +27,29 @@ const App: React.FC = () => {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+  const toggleEditTask = (id: number) => {
+    setTasks(tasks.map(task => 
+      task.id === id ? { ...task, isEditing: !task.isEditing } : task
+    ));
+  };
+
+  const saveTask = (id: number, newText: string) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, text: newText, isEditing: false } : task
+    ));
+  };
+
   return (
     <div>
       <h1>Personal Task Tracker</h1>
       <AddTaskForm addTask={addTask} />
-      <TaskList tasks={tasks} toggleComplete={toggleComplete} deleteTask={deleteTask} />
+      <TaskList 
+      tasks={tasks}
+      toggleComplete={toggleComplete} 
+      deleteTask={deleteTask}
+      toggleEditTask={toggleEditTask} 
+      saveTask={saveTask} // Pass the saveTask function to TaskList for editing tasks. 
+      />
     </div>
   );
 };
