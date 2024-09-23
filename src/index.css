@@ -2,12 +2,25 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1 {
   text-align: center;
   font-size: 36px;
+}
+
+#app {
+  max-width: 600px;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 form {
@@ -29,8 +42,14 @@ button {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
   color: white;
+  cursor: pointer;
+  margin-left: 10px;
+  background-color: rgb(47, 75, 236);
+}
+
+button:hover {
+  background-color: rgb(216, 69, 69);
 }
 
 ul {
@@ -48,11 +67,61 @@ li {
   border-radius: 5px;
 }
 
+li:last-child {
+  border-bottom: none;
+}
+
 li span {
   flex: 1;
 }
 
-button {
-  margin-left: 10px;
-  background-color: #dc3545;
+
+/* Responsive Design for Mobile and Tablets */
+
+/* Tablet and small screens (up to 768px) */
+@media (max-width: 768px) {
+  #app {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  button {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Mobile devices (up to 480px) */
+@media (max-width: 480px) {
+  #app {
+    max-width: 95%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+  }
+
+  button.delete {
+    margin-top: 10px;
+  }
 }
